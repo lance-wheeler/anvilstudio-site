@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Terms of Service — Anvil Studio</title>
+<meta name="description" content="Anvil Studio terms of service. The terms governing use of our website and services." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="apple-touch-icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #08080B; --bg-surface: #0E0E12; --bg-elev: #131319;
+  --border: #1C1C24; --border-bright: #2A2A35;
+  --text: #F4F4F5; --text-muted: #8B8B95; --text-faint: #5C5C66;
+  --accent: #7B7BFF; --accent-soft: #A3A3FF;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', Menlo, monospace;
+  --maxw: 800px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text); font-family: var(--sans);
+  font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(123, 123, 255, 0.06), transparent 60%);
+}
+main, nav, footer { position: relative; z-index: 1; }
+a { color: var(--accent-soft); text-decoration: none; }
+a:hover { color: var(--accent); }
+
+.nav {
+  position: sticky; top: 0; z-index: 40;
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  background: rgba(8, 8, 11, 0.7);
+  border-bottom: 1px solid rgba(28, 28, 36, 0.6);
+}
+.nav-inner {
+  max-width: 1180px; margin: 0 auto; padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; color: var(--text); }
+.brand-mark { width: 24px; height: 24px; }
+.brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+.nav-cta {
+  padding: 8px 14px; border: 1px solid var(--border-bright);
+  border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text);
+}
+.nav-cta:hover { background: var(--bg-elev); border-color: var(--accent); color: var(--text); }
+
+main { max-width: var(--maxw); margin: 0 auto; padding: 80px 24px 64px; }
+@media (max-width: 760px) { main { padding: 48px 20px; } }
+
+.page-title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(36px, 5vw, 52px); line-height: 1.1;
+  letter-spacing: -0.03em; margin-bottom: 12px;
+}
+.page-meta {
+  font-family: var(--mono); font-size: 12px;
+  color: var(--text-faint); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 48px;
+}
+.legal-content h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: 24px; letter-spacing: -0.015em;
+  margin-top: 40px; margin-bottom: 14px;
+}
+.legal-content p { color: var(--text-muted); margin-bottom: 14px; }
+.legal-content ul { margin: 0 0 18px 20px; color: var(--text-muted); }
+.legal-content ul li { margin-bottom: 6px; }
+.legal-content strong { color: var(--text); font-weight: 500; }
+
+footer { border-top: 1px solid var(--border); padding: 40px 24px; font-size: 13px; color: var(--text-faint); margin-top: 64px; }
+.footer-inner { max-width: 1180px; margin: 0 auto; }
+.footer-row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.footer-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.footer-links a { color: var(--text-faint); }
+.footer-links a:hover { color: var(--text); }
+.footer-links a + a::before { content: '·'; color: var(--text-faint); margin-right: 20px; }
+.footer-disclaimer {
+  border-top: 1px solid var(--border); padding-top: 20px;
+  font-size: 12px; color: var(--text-faint);
+  max-width: 800px; line-height: 1.55;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="logo.png" alt="Anvil Studio" /></span>
+      Anvil Studio
+    </a>
+    <a href="index.html#cta" class="nav-cta">Book a call</a>
+  </div>
+</nav>
+
+<main>
+  <h1 class="page-title">Terms of Service</h1>
+  <div class="page-meta">Effective: May 19, 2026 · Last updated: May 19, 2026</div>
+
+  <div class="legal-content">
+    <p>By using anvilstudio.io or engaging with Anvil Studio's services, you agree to the following terms.</p>
+
+    <h2>1. What We Provide</h2>
+    <p>Anvil Studio provides AI product strategy, audits, and fractional product support to small product teams. Specific deliverables, timelines, scope, and pricing for any engagement will be defined in a separate written proposal or statement of work.</p>
+
+    <h2>2. No Guaranteed Outcome</h2>
+    <p>We do not guarantee any specific business, revenue, legal, compliance, security, or technical outcome from our work. Our recommendations are informed by experience and best practices but depend on factors beyond our control, including client implementation choices, team execution, market conditions, and third-party tools.</p>
+
+    <h2>3. Client Responsibilities</h2>
+    <p>You (the client) remain responsible for:</p>
+    <ul>
+      <li>Final implementation of any recommendation</li>
+      <li>Legal review of decisions affecting your business</li>
+      <li>Security review of code, integrations, and data handling</li>
+      <li>Compliance with applicable laws and regulations</li>
+      <li>Business and product decisions made in your organization</li>
+    </ul>
+
+    <h2>4. AI Recommendations Require Human Review</h2>
+    <p>Our work involves recommendations related to AI systems, prompts, models, and integrations. AI output can be inaccurate, biased, or unpredictable. Any AI-related recommendation we provide must be reviewed by qualified humans on your team before being deployed to production or used to make consequential decisions.</p>
+
+    <h2>5. Payment Terms</h2>
+    <p>Pricing for each engagement is fixed in writing in the applicable proposal. Default terms:</p>
+    <ul>
+      <li><strong>Audits:</strong> 100% due upon signed proposal, before work begins.</li>
+      <li><strong>Fractional retainers:</strong> Monthly fee billed on the 1st of each month, due upon receipt.</li>
+      <li><strong>Late payments:</strong> Work may pause until invoices are current.</li>
+      <li><strong>Cancellation:</strong> Either party may cancel an ongoing retainer with 30 days written notice. Engagement-specific cancellation terms in a signed proposal control if different.</li>
+      <li><strong>Refunds:</strong> Fees paid for work already performed are non-refundable. Fees for unperformed work may be refunded at our discretion.</li>
+    </ul>
+
+    <h2>6. Intellectual Property</h2>
+    <p>Upon full payment for an engagement:</p>
+    <ul>
+      <li>Client owns the final paid deliverables specifically created for that client (reports, specs, custom prompts, custom code written for the engagement).</li>
+      <li>Anvil Studio retains all rights to pre-existing templates, methods, frameworks, processes, know-how, and any general-purpose materials we use across multiple clients.</li>
+      <li>Anvil Studio may reference the general nature of work performed (e.g., "worked with a fintech startup on AI onboarding") without disclosing confidential information, unless a separate NDA states otherwise.</li>
+    </ul>
+
+    <h2>7. Confidentiality</h2>
+    <p>We treat client information shared during engagements as confidential and will not disclose it without permission, except as required by law. A separate mutual NDA may be signed for any engagement upon request.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by law, Anvil Studio's total liability for any claim arising from our services is limited to the fees paid by the client for the specific engagement giving rise to the claim. We are not liable for any indirect, incidental, consequential, or punitive damages, including lost profits, lost data, or business interruption.</p>
+
+    <h2>9. No Professional Advice</h2>
+    <p>Nothing on this website or in our deliverables constitutes legal, financial, tax, medical, or compliance advice. You should consult qualified professionals for those matters.</p>
+
+    <h2>10. Termination</h2>
+    <p>Either party may terminate an engagement for material breach with reasonable opportunity to cure. Anvil Studio reserves the right to decline or end engagements that conflict with our values or capacity.</p>
+
+    <h2>11. Governing Law</h2>
+    <p>These terms are governed by the laws of the State of Florida, United States, without regard to conflicts of law principles. Any disputes will be resolved in the state or federal courts located in Orange County, Florida.</p>
+
+    <h2>12. Changes to These Terms</h2>
+    <p>We may update these terms from time to time. Any changes will be posted on this page with a revised "Last updated" date. Continued use of the site or services after changes are posted constitutes acceptance.</p>
+
+    <h2>13. Contact</h2>
+    <p>Questions about these terms: <a href="mailto:hello@anvilstudio.io">hello@anvilstudio.io</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div>© 2026 Anvil Studio · anvilstudio.io</div>
+      <div class="footer-links">
+        <a href="mailto:hello@anvilstudio.io">Email</a>
+        <a href="https://instagram.com/anvilstudio.io" target="_blank" rel="noopener">Instagram</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      Anvil Studio provides product and AI implementation support. Information on this site is for general business purposes only and is not legal, financial, or compliance advice.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

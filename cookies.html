@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Cookie Notice — Anvil Studio</title>
+<meta name="description" content="Anvil Studio cookie notice. How we use cookies and analytics on our site." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="apple-touch-icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #08080B; --bg-surface: #0E0E12; --bg-elev: #131319;
+  --border: #1C1C24; --border-bright: #2A2A35;
+  --text: #F4F4F5; --text-muted: #8B8B95; --text-faint: #5C5C66;
+  --accent: #7B7BFF; --accent-soft: #A3A3FF;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', Menlo, monospace;
+  --maxw: 800px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text); font-family: var(--sans);
+  font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(123, 123, 255, 0.06), transparent 60%);
+}
+main, nav, footer { position: relative; z-index: 1; }
+a { color: var(--accent-soft); text-decoration: none; }
+a:hover { color: var(--accent); }
+
+.nav {
+  position: sticky; top: 0; z-index: 40;
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  background: rgba(8, 8, 11, 0.7);
+  border-bottom: 1px solid rgba(28, 28, 36, 0.6);
+}
+.nav-inner {
+  max-width: 1180px; margin: 0 auto; padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; color: var(--text); }
+.brand-mark { width: 24px; height: 24px; }
+.brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+.nav-cta {
+  padding: 8px 14px; border: 1px solid var(--border-bright);
+  border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text);
+}
+.nav-cta:hover { background: var(--bg-elev); border-color: var(--accent); color: var(--text); }
+
+main { max-width: var(--maxw); margin: 0 auto; padding: 80px 24px 64px; }
+@media (max-width: 760px) { main { padding: 48px 20px; } }
+
+.page-title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(36px, 5vw, 52px); line-height: 1.1;
+  letter-spacing: -0.03em; margin-bottom: 12px;
+}
+.page-meta {
+  font-family: var(--mono); font-size: 12px;
+  color: var(--text-faint); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 48px;
+}
+.legal-content h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: 24px; letter-spacing: -0.015em;
+  margin-top: 40px; margin-bottom: 14px;
+}
+.legal-content p { color: var(--text-muted); margin-bottom: 14px; }
+.legal-content ul { margin: 0 0 18px 20px; color: var(--text-muted); }
+.legal-content ul li { margin-bottom: 6px; }
+.legal-content strong { color: var(--text); font-weight: 500; }
+
+footer { border-top: 1px solid var(--border); padding: 40px 24px; font-size: 13px; color: var(--text-faint); margin-top: 64px; }
+.footer-inner { max-width: 1180px; margin: 0 auto; }
+.footer-row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.footer-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.footer-links a { color: var(--text-faint); }
+.footer-links a:hover { color: var(--text); }
+.footer-links a + a::before { content: '·'; color: var(--text-faint); margin-right: 20px; }
+.footer-disclaimer {
+  border-top: 1px solid var(--border); padding-top: 20px;
+  font-size: 12px; color: var(--text-faint);
+  max-width: 800px; line-height: 1.55;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="logo.png" alt="Anvil Studio" /></span>
+      Anvil Studio
+    </a>
+    <a href="index.html#cta" class="nav-cta">Book a call</a>
+  </div>
+</nav>
+
+<main>
+  <h1 class="page-title">Cookie Notice</h1>
+  <div class="page-meta">Effective: May 19, 2026 · Last updated: May 19, 2026</div>
+
+  <div class="legal-content">
+    <p>This notice explains how Anvil Studio uses cookies and similar technologies on anvilstudio.io.</p>
+
+    <h2>1. What Are Cookies</h2>
+    <p>Cookies are small text files stored on your device when you visit a website. They are commonly used to make sites work, remember preferences, and understand how visitors use them.</p>
+
+    <h2>2. How We Use Them</h2>
+    <p>We may use cookies, analytics, and third-party tools to:</p>
+    <ul>
+      <li>Understand site traffic (which pages are visited, how visitors arrive)</li>
+      <li>Improve the site's content, structure, and performance</li>
+      <li>Ensure the site loads correctly across devices and browsers</li>
+      <li>Detect and prevent abuse, fraud, or security issues</li>
+    </ul>
+
+    <h2>3. Types of Cookies</h2>
+    <ul>
+      <li><strong>Essential cookies:</strong> Required for the site to function (e.g., basic navigation, security). These cannot be disabled without breaking site functionality.</li>
+      <li><strong>Analytics cookies:</strong> Help us understand site usage in aggregate. These do not identify you personally.</li>
+      <li><strong>Third-party cookies:</strong> Set by services we use (e.g., booking tools, hosting providers, analytics).</li>
+    </ul>
+
+    <h2>4. Disabling Cookies</h2>
+    <p>You can disable or delete cookies through your browser settings. Most browsers allow you to:</p>
+    <ul>
+      <li>Block all cookies</li>
+      <li>Block third-party cookies only</li>
+      <li>Delete existing cookies</li>
+      <li>Receive a prompt before cookies are stored</li>
+    </ul>
+    <p>Note that disabling some cookies may affect site functionality.</p>
+
+    <h2>5. Future Tracking and Pixels</h2>
+    <p>If we add non-essential tracking technologies in the future (such as marketing pixels, retargeting tags, or advertising cookies), we will display a consent banner before those tools run, and you will be able to accept or decline.</p>
+
+    <h2>6. Do Not Track</h2>
+    <p>Some browsers offer a "Do Not Track" signal. Because there is no industry standard for how to interpret this signal, we currently do not respond to it. We do not engage in cross-site behavioral advertising that would commonly be associated with DNT signals.</p>
+
+    <h2>7. Changes to This Notice</h2>
+    <p>We may update this notice from time to time. Any changes will be posted on this page with a revised "Last updated" date.</p>
+
+    <h2>8. Contact</h2>
+    <p>Questions about cookies or tracking on our site: <a href="mailto:hello@anvilstudio.io">hello@anvilstudio.io</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div>© 2026 Anvil Studio · anvilstudio.io</div>
+      <div class="footer-links">
+        <a href="mailto:hello@anvilstudio.io">Email</a>
+        <a href="https://instagram.com/anvilstudio.io" target="_blank" rel="noopener">Instagram</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      Anvil Studio provides product and AI implementation support. Information on this site is for general business purposes only and is not legal, financial, or compliance advice.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
