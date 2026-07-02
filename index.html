@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Anvil Studio | AI Product Studio</title>
+<meta name="description" content="An AI implementation studio. Fractional product leadership for teams shipping AI features. Built by operators, not consultants." />
+
+<!-- Social link preview -->
+<meta property="og:title" content="Anvil Studio | AI Product Studio" />
+<meta property="og:description" content="Fractional product leadership for teams shipping AI features. AI idea → roadmap → specs → shipped feature." />
+<meta property="og:image" content="https://lance-wheeler.github.io/anvilstudio-site/logo.png" />
+<meta property="og:url" content="https://anvilstudio.io" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Favicon (the tab icon) -->
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="apple-touch-icon" href="logo.png" />
+
+<!--
+  BEFORE LAUNCH:
+  1. Replace https://calendly.com/hello-anvilstudio/30min with your Calendly/TidyCal link (find/replace all)
+  2. Replace hello@anvilstudio.io if you want a different email
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   ANVIL STUDIO — forge / spec-sheet design system
+   Palette: soot iron blacks (warm), ember heat accent,
+   brushed-steel neutrals. No purple. No blobs.
+   Type: Archivo (display + body) / IBM Plex Mono (spec voice)
+   ============================================================ */
+:root {
+  --bg: #0C0A08;            /* soot black, warm undertone */
+  --surface: #131009;       /* -- */
+  --surface-2: #161310;
+  --elev: #1C1813;
+  --line: #26211A;          /* warm graphite hairline */
+  --line-bright: #3B3325;
+  --text: #EFE9DE;          /* forge-lit off-white */
+  --muted: #A79D8D;
+  --faint: #6F6557;
+  --ember: #E5822F;         /* heated metal */
+  --ember-hot: #FFAB57;     /* white-hot edge */
+  --ember-deep: #B85C1E;    /* cooling */
+  --steel: #B8AFA2;         /* brushed steel */
+  --sans: 'Archivo', system-ui, -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', Menlo, monospace;
+  --maxw: 1160px;
+  --radius: 6px;
+  --heat-gradient: linear-gradient(90deg, var(--ember-hot), var(--ember) 55%, var(--ember-deep));
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text); font-family: var(--sans);
+  font-size: 16px; line-height: 1.6; font-weight: 400;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; letter-spacing: -0.005em;
+}
+/* Engineering grid texture + single ember glow at the top edge.
+   Kept faint on purpose — atmosphere, not decoration. */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 42% at 50% -18%, rgba(229, 130, 47, 0.10), transparent 62%),
+    repeating-linear-gradient(0deg, rgba(239, 233, 222, 0.016) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgba(239, 233, 222, 0.016) 0 1px, transparent 1px 56px);
+}
+main, nav, footer { position: relative; z-index: 1; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; font-size: inherit; }
+::selection { background: rgba(229, 130, 47, 0.28); }
+:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- shared voice ---------- */
+.mono { font-family: var(--mono); }
+.stamp {
+  font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--faint);
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 40;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(12, 10, 8, 0.78);
+  border-bottom: 1px solid rgba(38, 33, 26, 0.7);
+}
+.nav-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 15px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand {
+  font-weight: 700; font-size: 15px; letter-spacing: 0.01em;
+  display: flex; align-items: center; gap: 10px; text-transform: uppercase;
+}
+.brand-mark { width: 24px; height: 24px; display: inline-flex; }
+.brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+.nav-links { display: flex; gap: 26px; font-size: 13.5px; color: var(--muted); font-weight: 500; }
+.nav-links a { transition: color 0.15s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  padding: 8px 15px; border: 1px solid var(--line-bright);
+  border-radius: var(--radius); font-size: 13px; font-weight: 600; transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.nav-cta:hover { border-color: var(--ember); color: var(--ember-hot); }
+@media (max-width: 760px) { .nav-links { display: none; } }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 22px; border-radius: var(--radius); font-size: 14.5px; font-weight: 600;
+  transition: transform 0.15s, background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  white-space: nowrap; letter-spacing: -0.005em;
+}
+.btn-primary {
+  background: var(--ember); color: #16100A;
+  box-shadow: 0 0 0 1px rgba(255, 171, 87, 0.25) inset, 0 6px 24px rgba(229, 130, 47, 0.18);
+}
+.btn-primary:hover { background: var(--ember-hot); transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(255, 171, 87, 0.35) inset, 0 8px 28px rgba(229, 130, 47, 0.26); }
+.btn-ghost { border: 1px solid var(--line-bright); color: var(--text); }
+.btn-ghost:hover { border-color: var(--ember); color: var(--ember-hot); }
+
+/* ---------- section scaffolding ---------- */
+section { padding: 104px 24px; position: relative; }
+.container { max-width: var(--maxw); margin: 0 auto; }
+@media (max-width: 760px) { section { padding: 68px 20px; } }
+
+/* Milled section marker: index + label + hairline, like a stamped part number */
+.section-mark {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 22px;
+}
+.section-mark .idx {
+  font-family: var(--mono); font-size: 12px; color: var(--ember); letter-spacing: 0.08em;
+}
+.section-mark .label {
+  font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.16em; color: var(--muted); white-space: nowrap;
+}
+.section-mark .rule { flex: 1; height: 1px; background: var(--line); position: relative; }
+.section-mark .rule::before {
+  content: ''; position: absolute; left: 0; top: -1.5px; width: 44px; height: 4px;
+  background: var(--heat-gradient); border-radius: 2px; opacity: 0.9;
+}
+.section-title {
+  font-weight: 700; font-size: clamp(28px, 4.2vw, 44px); line-height: 1.06;
+  letter-spacing: -0.025em; margin-bottom: 16px; max-width: 760px;
+}
+.section-sub { font-size: 17px; color: var(--muted); line-height: 1.6; max-width: 640px; }
+.section-header { margin-bottom: 56px; }
+
+/* ---------- hero ---------- */
+.hero { padding-top: 96px; padding-bottom: 96px; }
+.hero-status {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 7px 14px; border: 1px solid var(--line-bright); border-radius: 3px;
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--steel); margin-bottom: 34px; background: rgba(28, 24, 19, 0.5);
+}
+.hero-status .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--ember);
+  box-shadow: 0 0 8px rgba(229, 130, 47, 0.8);
+  animation: emberPulse 2.6s ease-in-out infinite;
+}
+@keyframes emberPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(229, 130, 47, 0.8); }
+  50% { opacity: 0.55; box-shadow: 0 0 3px rgba(229, 130, 47, 0.4); }
+}
+.hero h1 {
+  font-weight: 800; font-size: clamp(38px, 6.4vw, 74px); line-height: 1.0;
+  letter-spacing: -0.035em; max-width: 900px; margin-bottom: 26px;
+}
+.hero h1 .hot {
+  background: var(--heat-gradient);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: clamp(16px, 2vw, 19px); color: var(--muted);
+  max-width: 620px; margin-bottom: 40px; line-height: 1.6;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 64px; }
+
+/* The forge rail — signature element.
+   The core promise rendered as a machined pipeline. */
+.forge-rail {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(28, 24, 19, 0.65), rgba(19, 16, 9, 0.4));
+  padding: 26px 28px 22px;
+  overflow-x: auto;
+}
+.forge-rail-label { margin-bottom: 18px; display: flex; justify-content: space-between; gap: 16px; }
+.forge-rail-label .stamp:last-child { color: var(--ember); }
+.forge-track { display: flex; align-items: center; min-width: 560px; }
+.forge-node { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
+.forge-node .pip {
+  width: 10px; height: 10px; border: 1.5px solid var(--faint); background: var(--bg);
+  transform: rotate(45deg);
+}
+.forge-node .name {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted); white-space: nowrap;
+}
+.forge-node.lit .pip {
+  border-color: var(--ember-hot); background: var(--ember);
+  box-shadow: 0 0 12px rgba(229, 130, 47, 0.7);
+}
+.forge-node.lit .name { color: var(--ember-hot); }
+.forge-link { flex: 1; height: 1px; background: var(--line-bright); margin: 0 14px 30px; position: relative; min-width: 34px; }
+.forge-link::after {
+  content: ''; position: absolute; right: -1px; top: -3px;
+  border-left: 5px solid var(--line-bright); border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent;
+}
+.forge-track .forge-link:last-of-type { background: var(--heat-gradient); }
+.forge-track .forge-link:last-of-type::after { border-left-color: var(--ember); }
+@media (max-width: 640px) {
+  .forge-rail { padding: 20px 18px; overflow-x: visible; }
+  .forge-track { flex-direction: column; align-items: flex-start; min-width: 0; gap: 0; }
+  .forge-node { flex-direction: row; align-items: center; }
+  .forge-node .pip { flex-shrink: 0; }
+  .forge-link { width: 1px; height: 26px; flex: none; min-width: 0; margin: 6px 0 6px 4.5px; }
+  .forge-link::after { right: auto; left: -2.5px; top: auto; bottom: -1px;
+    border-left: 3.5px solid transparent; border-right: 3.5px solid transparent;
+    border-top: 5px solid var(--line-bright); border-bottom: none; }
+  .forge-track .forge-link:last-of-type::after { border-top-color: var(--ember); border-left-color: transparent; }
+}
+
+.hero-meta {
+  margin-top: 44px; display: flex; gap: 0; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 12px; color: var(--faint);
+  letter-spacing: 0.04em;
+}
+.hero-meta span { display: flex; align-items: center; gap: 8px; padding: 4px 22px 4px 0; margin-right: 22px; border-right: 1px solid var(--line); }
+.hero-meta span:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.hero-meta svg { color: var(--ember); flex-shrink: 0; }
+@media (max-width: 640px) {
+  .hero-meta { flex-direction: column; gap: 10px; }
+  .hero-meta span { border-right: none; padding: 0; margin: 0; }
+}
+
+/* ---------- services ---------- */
+.services-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; align-items: stretch; }
+@media (max-width: 880px) { .services-grid { grid-template-columns: 1fr; } }
+.service-card {
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 34px 32px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: flex; flex-direction: column; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--line-bright);
+}
+.service-card.featured::before { background: var(--heat-gradient); }
+.service-card:hover { border-color: var(--line-bright); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35); }
+.service-card .tag-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; gap: 12px; }
+.service-card .tag {
+  font-family: var(--mono); font-size: 11px; color: var(--faint);
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.service-card.featured .tag { color: var(--ember); }
+.service-card h3 {
+  font-weight: 700; font-size: 25px;
+  letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1.15;
+}
+.service-card .price { color: var(--steel); font-size: 14px; margin-bottom: 18px; font-family: var(--mono); }
+.service-card .price strong { color: var(--text); font-weight: 500; font-size: 16px; }
+.service-card p { color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 22px; }
+.service-card ul { list-style: none; margin-bottom: 26px; font-size: 14px; flex-grow: 1; }
+.service-card ul li {
+  padding: 9px 0; color: var(--muted); display: flex; gap: 11px;
+  border-bottom: 1px solid rgba(38, 33, 26, 0.55);
+}
+.service-card ul li:last-child { border-bottom: none; }
+.service-card ul li::before { content: '—'; color: var(--ember); flex-shrink: 0; }
+.service-card .fineprint {
+  font-family: var(--mono); font-size: 11.5px; color: var(--faint);
+  line-height: 1.55; margin-bottom: 22px; padding: 10px 12px;
+  border-left: 2px solid var(--line-bright); background: rgba(28, 24, 19, 0.4);
+}
+.service-card .card-cta {
+  font-size: 13.5px; color: var(--ember-hot); font-weight: 600;
+  display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
+  transition: gap 0.15s;
+}
+.service-card .card-cta:hover { gap: 11px; }
+
+/* ---------- process (forge timeline) ---------- */
+.process-rail { position: relative; }
+.process-line {
+  position: absolute; top: 7px; left: 0; right: 0; height: 1px; background: var(--line-bright);
+}
+.process-line::before {
+  content: ''; position: absolute; left: 0; top: -1px; height: 3px; width: 25%;
+  background: var(--heat-gradient); border-radius: 2px;
+}
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; position: relative; }
+.phase { padding-top: 28px; position: relative; }
+.phase::before {
+  content: ''; position: absolute; top: 2px; left: 0; width: 11px; height: 11px;
+  background: var(--bg); border: 1.5px solid var(--faint); transform: rotate(45deg);
+}
+.phase:first-child::before { border-color: var(--ember-hot); background: var(--ember); box-shadow: 0 0 10px rgba(229, 130, 47, 0.6); }
+.phase-num { font-family: var(--mono); font-size: 11px; color: var(--ember); margin-bottom: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.phase h3 { font-weight: 700; font-size: 19px; margin-bottom: 10px; letter-spacing: -0.015em; }
+.phase p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+@media (max-width: 940px) {
+  .process-line { display: none; }
+  .process-grid { grid-template-columns: 1fr; gap: 0; }
+  .phase { padding: 24px 0 24px 32px; border-left: 1px solid var(--line-bright); }
+  .phase::before { left: -6.5px; top: 30px; }
+  .phase:first-child { padding-top: 0; }
+  .phase:first-child::before { top: 6px; }
+  .phase:last-child { padding-bottom: 0; }
+}
+
+/* ---------- case file (proof module) ---------- */
+.proof { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.case-file {
+  border: 1px solid var(--line-bright); border-radius: var(--radius);
+  background: var(--surface-2); overflow: hidden; margin-bottom: 72px;
+}
+.case-file-head {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 14px 26px; border-bottom: 1px solid var(--line);
+  background: rgba(28, 24, 19, 0.5); flex-wrap: wrap;
+}
+.case-file-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.case-cell { padding: 30px 26px; border-right: 1px solid var(--line); }
+.case-cell:last-child { border-right: none; }
+.case-cell h3 {
+  font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--faint); margin-bottom: 14px; font-weight: 500;
+}
+.case-cell p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+.case-result { background: linear-gradient(180deg, rgba(229, 130, 47, 0.07), transparent 70%); }
+.case-result .big {
+  font-weight: 800; font-size: clamp(52px, 7vw, 76px); line-height: 1;
+  letter-spacing: -0.03em; margin-bottom: 10px;
+  background: var(--heat-gradient);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+@media (max-width: 880px) {
+  .case-file-body { grid-template-columns: 1fr; }
+  .case-cell { border-right: none; border-bottom: 1px solid var(--line); }
+  .case-cell:last-child { border-bottom: none; }
+  .case-file { margin-bottom: 56px; }
+}
+
+.proof-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: start; }
+@media (max-width: 880px) { .proof-grid { grid-template-columns: 1fr; gap: 40px; } }
+.proof-copy p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+.proof-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 480px) { .proof-stats { grid-template-columns: 1fr; } }
+.proof-stat { padding: 22px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); }
+.proof-stat .num {
+  font-size: 34px; font-weight: 700;
+  color: var(--text); letter-spacing: -0.02em; display: block; margin-bottom: 6px;
+}
+.proof-stat .label { font-size: 13px; color: var(--muted); line-height: 1.45; }
+
+/* ---------- fit ledger (for / not for) ---------- */
+.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 800px) { .fit-grid { grid-template-columns: 1fr; } }
+.fit-col {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface-2); padding: 30px 28px;
+}
+.fit-col h3 {
+  font-family: var(--mono); font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.14em; margin-bottom: 20px; font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+}
+.fit-col.yes h3 { color: var(--ember-hot); }
+.fit-col.no h3 { color: var(--faint); }
+.fit-col ul { list-style: none; font-size: 14.5px; }
+.fit-col ul li { padding: 10px 0; color: var(--muted); display: flex; gap: 12px; border-bottom: 1px solid rgba(38, 33, 26, 0.55); line-height: 1.5; }
+.fit-col ul li:last-child { border-bottom: none; }
+.fit-col.yes ul li::before { content: '+'; color: var(--ember); font-family: var(--mono); flex-shrink: 0; }
+.fit-col.no ul li::before { content: '–'; color: var(--faint); font-family: var(--mono); flex-shrink: 0; }
+
+/* ---------- pricing ---------- */
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 18px; max-width: 880px; align-items: stretch; }
+@media (max-width: 880px) { .pricing-grid { grid-template-columns: 1fr; } }
+.price-card {
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 34px 30px; position: relative;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.price-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--line-bright);
+}
+.price-card.featured { border-color: var(--line-bright); }
+.price-card.featured::before { background: var(--heat-gradient); }
+.price-card .plan-tag {
+  font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--faint); margin-bottom: 14px;
+}
+.price-card.featured .plan-tag { color: var(--ember); }
+.price-card h3 { font-weight: 700; font-size: 21px; margin-bottom: 4px; letter-spacing: -0.015em; }
+.price-card .for { font-size: 13px; color: var(--faint); margin-bottom: 26px; }
+.price-amount { font-size: 42px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 2px; }
+.price-period { font-size: 12.5px; color: var(--muted); margin-bottom: 26px; font-family: var(--mono); }
+.price-card ul { list-style: none; margin-bottom: 26px; flex-grow: 1; }
+.price-card ul li {
+  padding: 9px 0; font-size: 14px; color: var(--muted); display: flex; gap: 11px;
+  border-bottom: 1px solid rgba(38, 33, 26, 0.55); line-height: 1.5;
+}
+.price-card ul li:last-child { border-bottom: none; }
+.price-card ul li::before { content: '—'; color: var(--ember); flex-shrink: 0; }
+.price-note {
+  font-family: var(--mono); font-size: 11.5px; color: var(--faint); line-height: 1.55;
+  margin-bottom: 24px; padding: 10px 12px;
+  border-left: 2px solid var(--line-bright); background: rgba(28, 24, 19, 0.4);
+}
+
+/* ---------- about ---------- */
+.about-content { max-width: 720px; }
+.about-content p { color: var(--muted); margin-bottom: 16px; line-height: 1.7; font-size: 16px; }
+.about-creds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.cred {
+  font-family: var(--mono); font-size: 11.5px; padding: 7px 13px; letter-spacing: 0.05em;
+  border: 1px solid var(--line-bright); border-radius: 3px; color: var(--steel);
+}
+
+/* ---------- faq ---------- */
+.faq-list { max-width: 780px; }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-q {
+  width: 100%; text-align: left; padding: 22px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 16.5px; font-weight: 600; transition: color 0.15s;
+  gap: 24px; letter-spacing: -0.01em;
+}
+.faq-q:hover { color: var(--ember-hot); }
+.faq-q .icon { flex-shrink: 0; width: 18px; height: 18px; transition: transform 0.2s; color: var(--faint); }
+.faq-item.open .faq-q .icon { transform: rotate(45deg); color: var(--ember); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.25s ease, padding 0.25s ease;
+  color: var(--muted); line-height: 1.65; font-size: 15px; padding-right: 40px;
+}
+.faq-item.open .faq-a { max-height: 420px; padding-bottom: 24px; }
+
+/* ---------- final CTA ---------- */
+.cta-final { text-align: center; padding: 110px 24px 130px; }
+.cta-final .container { max-width: 720px; }
+.cta-final .stamp { color: var(--ember); margin-bottom: 20px; display: block; }
+.cta-final h2 {
+  font-weight: 800; font-size: clamp(30px, 4.6vw, 48px); line-height: 1.08;
+  letter-spacing: -0.03em; margin-bottom: 18px;
+}
+.cta-final p { color: var(--muted); font-size: 17px; margin-bottom: 34px; line-height: 1.6; }
+
+/* ---------- footer ---------- */
+footer { border-top: 1px solid var(--line); padding: 40px 24px; font-size: 13px; color: var(--faint); }
+.footer-inner { max-width: var(--maxw); margin: 0 auto; }
+.footer-row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.footer-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.footer-links a { transition: color 0.15s; }
+.footer-links a:hover { color: var(--text); }
+.footer-disclaimer {
+  border-top: 1px solid var(--line);
+  padding-top: 20px; font-size: 12px; color: var(--faint);
+  max-width: 800px; line-height: 1.55;
+}
+
+/* ---------- motion ---------- */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-status .dot { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}
+
+/* ---------- sticky mobile CTA ---------- */
+.sticky-cta {
+  display: none; position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 50;
+  background: var(--ember); color: #16100A; font-weight: 700; font-size: 15px;
+  padding: 15px 20px; border-radius: var(--radius); text-align: center;
+  box-shadow: 0 10px 32px rgba(229, 130, 47, 0.3), 0 2px 8px rgba(0, 0, 0, 0.45);
+  letter-spacing: -0.01em; opacity: 0; transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none;
+}
+.sticky-cta.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+@media (max-width: 760px) { .sticky-cta { display: block; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark">
+        <img src="logo.png" alt="Anvil Studio" />
+      </span>
+      Anvil Studio
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#how">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+    </div>
+    <a href="https://calendly.com/hello-anvilstudio/30min" class="nav-cta">Book a call</a>
+  </div>
+</nav>
+
+<main>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-status reveal">
+      <span class="dot" aria-hidden="true"></span>
+      Taking 2 new clients this quarter
+    </div>
+    <h1 class="reveal">
+      Turn vague AI ideas into <span class="hot">shipped product features.</span>
+    </h1>
+    <p class="hero-sub reveal">
+      Anvil Studio is an async-first AI product studio for founders, CTOs, and small teams adding AI for the first time. We help you figure out what's worth building, write it up properly, and get it into production — without agency overhead or 12-month retainers.
+    </p>
+    <div class="hero-actions reveal">
+      <a href="https://calendly.com/hello-anvilstudio/30min" class="btn btn-primary">Book a 20-min intro call →</a>
+      <a href="#services" class="btn btn-ghost">See how we work</a>
+    </div>
+
+    <div class="forge-rail reveal" aria-label="How an engagement moves: AI idea to roadmap to specs and backlog to shipped feature">
+      <div class="forge-rail-label">
+        <span class="stamp">Every engagement runs this line</span>
+        <span class="stamp">→ Production</span>
+      </div>
+      <div class="forge-track">
+        <div class="forge-node"><span class="pip" aria-hidden="true"></span><span class="name">AI idea</span></div>
+        <div class="forge-link" aria-hidden="true"></div>
+        <div class="forge-node"><span class="pip" aria-hidden="true"></span><span class="name">Roadmap</span></div>
+        <div class="forge-link" aria-hidden="true"></div>
+        <div class="forge-node"><span class="pip" aria-hidden="true"></span><span class="name">Specs / backlog</span></div>
+        <div class="forge-link" aria-hidden="true"></div>
+        <div class="forge-node lit"><span class="pip" aria-hidden="true"></span><span class="name">Shipped feature</span></div>
+      </div>
+    </div>
+
+    <div class="hero-meta reveal">
+      <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Run by an operator with AI shipped at scale</span>
+      <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Built for small teams</span>
+      <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Remote · US-based</span>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-mark"><span class="idx">01</span><span class="label">What we do</span><span class="rule" aria-hidden="true"></span></div>
+      <h2 class="section-title">Two ways to work with us.</h2>
+      <p class="section-sub">Most teams come to Anvil for one of these. If you're not sure which fits, we figure it out on the intro call.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card featured reveal">
+        <div class="tag-row">
+          <span class="tag">Ongoing</span>
+          <span class="tag">Async-first</span>
+        </div>
+        <h3>Fractional AI Product Owner</h3>
+        <div class="price">From <strong>$5K</strong> / month</div>
+        <p>Product leadership for small teams that need AI feature planning, backlog ownership, and execution support — without hiring a full-time Product Owner. Built for teams that move on writing, not meetings. Idea → roadmap → specs → shipped, on repeat.</p>
+        <ul>
+          <li>~5–10 hours/week of focused product support</li>
+          <li>Weekly or biweekly strategy calls</li>
+          <li>Backlog ownership: specs, user stories, acceptance criteria</li>
+          <li>Sprint planning + grooming support</li>
+          <li>Async stakeholder + engineering coordination</li>
+          <li>Monthly product + business review</li>
+        </ul>
+        <div class="fineprint">Async-first by design: limited live meeting availability. This is fractional product leadership, not a full-time employee replacement.</div>
+        <a href="https://calendly.com/hello-anvilstudio/30min" class="card-cta">Start a conversation →</a>
+      </div>
+      <div class="service-card reveal">
+        <div class="tag-row">
+          <span class="tag">One-time</span>
+          <span class="tag">2 weeks</span>
+        </div>
+        <h3>Product + AI Audit</h3>
+        <div class="price"><strong>$2,500</strong> flat</div>
+        <p>A written deliverable. We review your product, team, and roadmap, then tell you where AI actually helps and where it's a distraction. No upsell.</p>
+        <ul>
+          <li>Product and roadmap review</li>
+          <li>AI opportunity assessment</li>
+          <li>Build vs. buy recommendations</li>
+          <li>Written report + a 60-min walkthrough call</li>
+        </ul>
+        <div class="fineprint">If the honest answer is "you don't need AI yet," that's what the report says.</div>
+        <a href="https://calendly.com/hello-anvilstudio/30min" class="card-cta">Book an audit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-mark"><span class="idx">02</span><span class="label">How we work</span><span class="rule" aria-hidden="true"></span></div>
+      <h2 class="section-title">Boring on purpose.</h2>
+      <p class="section-sub">No theatrics. Most engagements follow the same arc, whether it's an audit or a six-month embed.</p>
+    </div>
+    <div class="process-rail">
+      <div class="process-line" aria-hidden="true"></div>
+      <div class="process-grid">
+        <div class="phase reveal">
+          <div class="phase-num">01 · Week 1</div>
+          <h3>Listen first</h3>
+          <p>We sit in on your standups, read your backlog, and talk to two or three users. Most "AI problems" turn out to be product problems wearing a hat.</p>
+        </div>
+        <div class="phase reveal">
+          <div class="phase-num">02 · Week 2</div>
+          <h3>Pick the smallest valuable feature</h3>
+          <p>One feature, one user, one workflow. We pick the highest-value thing your team can ship in the engagement window and write it up properly — specs, stories, acceptance criteria.</p>
+        </div>
+        <div class="phase reveal">
+          <div class="phase-num">03 · Weeks 3–5</div>
+          <h3>Ship it</h3>
+          <p>Backlog grooming, design partner check-ins, sprint reviews. We work alongside your engineers, not above them. We ship to production, not a demo.</p>
+        </div>
+        <div class="phase reveal">
+          <div class="phase-num">04 · Final week</div>
+          <h3>Hand off</h3>
+          <p>You get a written playbook for how to continue without us. If we keep going, we keep going. If we don't, you're not stranded.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof" id="proof">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-mark"><span class="idx">03</span><span class="label">Proof of work</span><span class="rule" aria-hidden="true"></span></div>
+      <h2 class="section-title">The receipts before the pitch.</h2>
+    </div>
+
+    <div class="case-file reveal">
+      <div class="case-file-head">
+        <span class="stamp">Case file · Internal AI chatbot rollout</span>
+        <span class="stamp">From the operator's in-house work</span>
+      </div>
+      <div class="case-file-body">
+        <div class="case-cell">
+          <h3>Context</h3>
+          <p>A large real estate technology platform serving 80,000+ professionals. Support teams across 10+ departments were fielding the same repetitive questions, every day, at volume.</p>
+        </div>
+        <div class="case-cell">
+          <h3>What we did</h3>
+          <p>Scoped, specced, and led an internal AI chatbot rollout across those departments — earning engineering trust, writing the acceptance criteria, and measuring results in production instead of a demo.</p>
+        </div>
+        <div class="case-cell case-result">
+          <h3>Result</h3>
+          <div class="big">35%</div>
+          <p>reduction in related support volume across 10+ departments.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-grid">
+      <div class="proof-copy reveal">
+        <h2 class="section-title" style="font-size: clamp(26px, 3.4vw, 36px);">Built by operators, not consultants.</h2>
+        <p>Anvil Studio is led by an operator who has led product work at a large real estate technology platform serving 80,000+ professionals. Four promotions in three and a half years. No college degree. IT-to-Product the long way.</p>
+        <p>We learned the unglamorous stuff in production: how to get engineering to trust an AI feature, how to scope something so it actually ships, how to measure whether it's working.</p>
+        <p>That's the work we bring to your team.</p>
+      </div>
+      <div class="proof-stats reveal">
+        <div class="proof-stat">
+          <span class="num">80K+</span>
+          <span class="label">Professionals served by the platform we ship on</span>
+        </div>
+        <div class="proof-stat">
+          <span class="num">10+</span>
+          <span class="label">Departments where the AI rollout landed</span>
+        </div>
+        <div class="proof-stat">
+          <span class="num">4</span>
+          <span class="label">Promotions in 3.5 years, no college degree</span>
+        </div>
+        <div class="proof-stat">
+          <span class="num">3.5</span>
+          <span class="label">Years shipping product in real production environments</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fit">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-mark"><span class="idx">04</span><span class="label">Fit check</span><span class="rule" aria-hidden="true"></span></div>
+      <h2 class="section-title">Who this is for. And who it isn't.</h2>
+      <p class="section-sub">We'd rather tell you on this page than 20 minutes into a call.</p>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col yes reveal">
+        <h3>Built for</h3>
+        <ul>
+          <li>Founders, CTOs, and product teams of 3–30 adding AI for the first time</li>
+          <li>Teams with an AI idea but no roadmap, specs, or backlog behind it</li>
+          <li>Async-first teams that move on writing, not standing meetings</li>
+          <li>Series A startups, profitable bootstrapped companies, and established SMBs</li>
+        </ul>
+      </div>
+      <div class="fit-col no reveal">
+        <h3>Not for</h3>
+        <ul>
+          <li>Companies with a senior AI/ML team already in place — they don't need us</li>
+          <li>Teams that want a full-time embedded hire or someone in meetings all day</li>
+          <li>Anyone shopping for a strategy deck with no plan to ship</li>
+          <li>Engagements that need more than the two client slots we keep open</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-mark"><span class="idx">05</span><span class="label">Pricing</span><span class="rule" aria-hidden="true"></span></div>
+      <h2 class="section-title">Flat fees. No hourly games.</h2>
+      <p class="section-sub">Every engagement is priced up front in the proposal. No surprise invoices. If something isn't working by week two, we change it or you walk. Most teams start with the audit, then decide.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="plan-tag">Start here</div>
+        <h3>Product + AI Audit</h3>
+        <div class="for">One-time · 2 weeks</div>
+        <div class="price-amount">$2,500</div>
+        <div class="price-period">flat, one-time</div>
+        <ul>
+          <li>Product + roadmap review</li>
+          <li>AI opportunity assessment</li>
+          <li>Build vs. buy recommendations</li>
+          <li>Written report</li>
+          <li>60-min walkthrough call</li>
+        </ul>
+        <a href="https://calendly.com/hello-anvilstudio/30min" class="btn btn-ghost" style="justify-content: center;">Start an audit</a>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="plan-tag">Most engagements</div>
+        <h3>Async-First Fractional AI Product Owner</h3>
+        <div class="for">Monthly retainer · async-first</div>
+        <div class="price-amount">$5,000+</div>
+        <div class="price-period">/ month</div>
+        <ul>
+          <li>~5–10 hours/week of focused support</li>
+          <li>Weekly or biweekly strategy calls</li>
+          <li>Backlog ownership: specs, user stories, acceptance criteria</li>
+          <li>Sprint planning + grooming support</li>
+          <li>Async stakeholder + engineering coordination</li>
+          <li>Monthly product + business review</li>
+        </ul>
+        <div class="price-note">Limited live meeting availability. Not a full-time employee replacement — that's the point of fractional.</div>
+        <a href="https://calendly.com/hello-anvilstudio/30min" class="btn btn-primary" style="justify-content: center;">Talk it through</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-mark"><span class="idx">06</span><span class="label">About</span><span class="rule" aria-hidden="true"></span></div>
+      <h2 class="section-title">A small studio. On purpose.</h2>
+    </div>
+    <div class="about-content reveal">
+      <p>Anvil Studio is a one-operator AI implementation studio. We take on a small number of outside engagements because we like building things. Most teams trying to add AI right now are getting bad advice from people who've never actually shipped it.</p>
+      <p>We don't write threads about AI. We ship features. The work is informed by years of leading product at a large real estate tech platform serving 80,000+ professionals. Everything we recommend has been pressure-tested in real production environments with real users, real budgets, and real consequences.</p>
+      <p>We cap at two outside engagements at a time. If we're at capacity, we'll tell you and refer you to someone good. If we're not the right fit, we'll tell you that too, on the first call.</p>
+      <div class="about-creds">
+        <span class="cred">CSM</span>
+        <span class="cred">A-CSPO</span>
+        <span class="cred">Duke AI PM</span>
+        <span class="cred">US · Remote</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-mark"><span class="idx">07</span><span class="label">FAQ</span><span class="rule" aria-hidden="true"></span></div>
+      <h2 class="section-title">Real questions.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          Why fractional instead of a full-time hire?
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">A senior Product Owner who's actually shipped AI runs $160K+ all-in, and most small teams need that skill set for the first six to twelve months of an AI bet, not forever. Fractional gets you the experience now, without the full-time commitment. Note: we work async-first with limited live meeting availability. This isn't a full-time embedded employee replacement.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          Are you actually building AI features, or just advising?
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Both. We embed with your engineering team, write specs, set up evals, and sit in code review when it matters. We're whatever your team needs us to be. But we're not a "deck consultant." If you want one of those, we know good ones we can refer you to.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          What stack do you work in?
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">We're pragmatic. OpenAI and Anthropic APIs for most things. Make.com and n8n for workflow automation. We'll plug into your existing stack rather than push a particular vendor. The right tool is whichever one your engineering team will maintain after we leave.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          What size of company is this for?
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Best fit: small product teams (3–30 people) without a dedicated AI lead. Series A startups, profitable bootstrapped companies, or established SMBs adding AI for the first time. We don't take engagements with companies that already have a senior AI/ML team. They don't need us.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          Is this a solo operator or a team?
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Solo operator by design. You get one person across the entire engagement. No junior staff, no account managers, no rotating bench. If that means we can only take on a few clients at a time, that's the trade-off. Quality over throughput.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          What happens on the first call?
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">20 minutes. You tell us what you're trying to do, we ask questions, and one of three things happens: we think we can help and we talk next steps, we think someone else is a better fit and we tell you who, or we think you don't need outside help at all. We'll tell you that too.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="cta">
+  <div class="container reveal">
+    <span class="stamp">AI idea → roadmap → specs → shipped feature</span>
+    <h2>Got a real problem? Let's talk about it.</h2>
+    <p>20 minutes. No pitch deck. If we're a fit, we figure out the smallest engagement that makes sense. If we're not, we'll point you at someone who is.</p>
+    <a href="https://calendly.com/hello-anvilstudio/30min" class="btn btn-primary">Book a 20-min call →</a>
+  </div>
+</section>
+
+</main>
+
+<a href="https://calendly.com/hello-anvilstudio/30min" class="sticky-cta" id="stickyCta">Book a 20-min call →</a>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div>© 2026 Anvil Studio · anvilstudio.io</div>
+      <div class="footer-links">
+        <a href="mailto:hello@anvilstudio.io">Email</a>
+        <a href="https://instagram.com/anvilstudio.io" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://calendly.com/hello-anvilstudio/30min">Book a call</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      Anvil Studio provides product and AI implementation support. Information on this site is for general business purposes only and is not legal, financial, or compliance advice.
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+    el.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Show sticky CTA after user scrolls past hero
+  const sticky = document.getElementById('stickyCta');
+  if (sticky) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        sticky.classList.add('show');
+      } else {
+        sticky.classList.remove('show');
+      }
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>
